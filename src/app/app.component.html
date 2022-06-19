@@ -1,0 +1,56 @@
+<div class="text-center m-4">
+  <h1>Practicing NGIF AND NGFOR</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{ disabled: counter === 1 }">
+          <a class="page-link" (click)="fitlerById(counter - 1)">Previous</a>
+        </li>
+        <ng-container *ngFor="let singleuserid of usersId; let i = index">
+          <li
+            class="page-item"
+            [ngClass]="{ active: singleuserid === counter }"
+            (click)="fitlerById(singleuserid)"
+          >
+            <a class="page-link">{{ singleuserid }}</a>
+          </li>
+        </ng-container>
+        <li
+          class="page-item"
+          [ngClass]="{ disabled: counter === usersId.length }"
+        >
+          <a class="page-link" (click)="fitlerById(counter + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
+    <ng-container *ngFor="let user of filterdUsers">
+      <div class="col-4 card p-3">
+        <p>ID: {{ user.id }}</p>
+        <p>USER ID: {{ user.userId }}</p>
+        <p>USER TITLE : {{ user.title }}</p>
+        <p>USER BODY : {{ user.body }}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!-- <ng-container *ngFor="let user of users">
+  <div
+    class="col-4 card p-3"
+    *ngIf="user.userId % 2 === 0; else forOdd"
+  >
+    <p>ID: {{ user.id }}</p>
+    <p>USER ID: {{ user.userId }}</p>
+    <p>USER TITLE : {{ user.title }}</p>
+  </div>
+  <ng-template #forOdd>
+    <div class="card p-3 col-4">
+      <p>ID: {{ user.id }}</p>
+      <p>USER ID: {{ user.userId }}</p>
+      <p>USER BODY : {{ user.body }}</p>
+    </div>
+  </ng-template>
+</ng-container> -->
